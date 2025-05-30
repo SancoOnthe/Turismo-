@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarro, Bajo Baudó - Joya del Pacífico Colombiano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --verde-selva: #0A3D2E;
+            --azul-oceano: #1A6F8B;
+            --dorado: #D4AF37;
+            --arena: #F0E6D2;
+            --sombra: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --degradado-verde: linear-gradient(135deg, #0A3D2E 0%, #1A6F8B 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            line-height: 1.8;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--verde-selva);
+            line-height: 1.3;
+        }
+        
+        /* Navbar de lujo */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            box-shadow: var(--sombra);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+        
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: var(--degradado-verde);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--verde-selva);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dorado);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--dorado);
+        }
+
+        /* Hero Swiper premium */
+        .hero-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .swiper-slide {
+            position: relative;
+        }
+        
+        .swiper-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 90%;
+            max-width: 1200px;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button {
+            background-color: var(--dorado);
+            color: var(--verde-selva);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .cta-button:hover::before {
+            width: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: white;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--dorado);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        .swiper-button-next, 
+        .swiper-button-prev {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-button-next:hover, 
+        .swiper-button-prev:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+        
+        .swiper-button-next::after, 
+        .swiper-button-prev::after {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Secciones elegantes */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--dorado);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* Atractivos turísticos premium */
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .attraction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .attraction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--degradado-verde);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .attraction-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .attraction-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .attraction-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .attraction-info {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .attraction-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--verde-selva);
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--azul-oceano);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .location i {
+            font-size: 1.2rem;
+        }
+        
+        .description {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .tips {
+            background: rgba(10, 61, 46, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--dorado);
+        }
+        
+        .tips h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--verde-selva);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tips h4 i {
+            color: var(--dorado);
+        }
+        
+        .tips p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Footer de lujo */
+        footer {
+            background: var(--degradado-verde);
+            color: white;
+            padding: 5rem 5% 3rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23f9f9f9" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23f9f9f9" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f9f9f9"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            transform: rotate(180deg);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--dorado);
+        }
+        
+        .footer-col p {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .footer-links a i {
+            color: var(--dorado);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a:hover i {
+            transform: scale(1.2);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--dorado);
+            color: var(--verde-selva);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .copyright a {
+            color: var(--dorado);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            section {
+                padding: 6rem 5%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.2rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-col {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Premium -->
+    <nav id="navbar">
+        <div class="logo">Pizarro, Bajo Baudó</div>
+        <div class="nav-links">
+            <a href="#atractivos">Atractivos</a>
+            <a href="#festivales">Festivales</a>
+            <a href="#gastronomia">Gastronomía</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Hero Swiper Premium -->
+    <div class="hero-container">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="img/23.jpg" alt="Playa Pizarro al atardecer">
+                    <div class="hero-content">
+                        <h1>Descubre Pizarro</h1>
+                        <p>Un paraíso escondido donde el río Baudó se funde con el océano Pacífico</p>
+                        <button class="cta-button">Explorar Destino</button>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide">
+                    <img src="img/18.jpg" alt="Manglares del Bajo Baudó">
+                    <div class="hero-content">
+                        <h1>Naturaleza en Estado Puro</h1>
+                        <p>Ecosistemas únicos que albergan una biodiversidad incomparable</p>
+                        <button class="cta-button">Conocer Atractivos</button>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide">
+                    <img src="img/25.avif" alt="Festival de la Virgen del Carmen">
+                    <div class="hero-content">
+                        <h1>Cultura Viva</h1>
+                        <p>Tradiciones ancestrales que perduran en el corazón del Chocó</p>
+                        <button class="cta-button">Vivir la Experiencia</button>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <!-- Atractivos Turísticos Premium -->
+    <section id="atractivos" class="attractions-section">
+        <div class="section-title">
+            <h2>Atractivos Turísticos</h2>
+            <p>Descubre los tesoros naturales que hacen de Pizarro un destino único</p>
+        </div>
+        
+        <div class="attractions-grid">
+            <!-- Playa Pizarro -->
+            <div class="attraction-card">
+                <img src="img/23.jpg" alt="Playa Pizarro">
+                <div class="attraction-info">
+                    <h3>Playa Pizarro</h3>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Cabecera municipal de Pizarro</span>
+                    </div>
+                    <p class="description">Amplia playa de arena dorada en la desembocadura del río Baudó, frente al océano Pacífico. Un lugar de belleza virgen, rodeado de selva tropical y cocoteros, ideal para bañarse, descansar y disfrutar de atardeceres inolvidables.</p>
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Recomendaciones</h4>
+                        <p>Llevar repelente, protección solar y provisiones (agua, comida), ya que los servicios son limitados. La mejor época para visitar es entre diciembre y marzo.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cascada de Mochadó -->
+            <div class="attraction-card">
+                <img src="img/cascada.jpg" alt="Cascada de Mochadó">
+                <div class="attraction-info">
+                    <h3>Cascada de Mochadó</h3>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Corregimiento de Mochadó</span>
+                    </div>
+                    <p class="description">Imponente salto de agua de aguas cristalinas y frescas, rodeado de espesa vegetación tropical. Se accede mediante una caminata por senderos selváticos que revelan la exuberancia de la flora y fauna local.</p>
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Recomendaciones</h4>
+                        <p>Visitar en temporada seca (menor caudal), llevar ropa y calzado adecuados para bosque, bastón para la caminata y snacks. Es imprescindible ir con guía local.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manglares del Bajo Baudó -->
+            <div class="attraction-card">
+                <img src="img/manglares.jpg" alt="Manglares del Bajo Baudó">
+                <div class="attraction-info">
+                    <h3>Manglares del Bajo Baudó</h3>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Área protegida - DRMI</span>
+                    </div>
+                    <p class="description">Extensa área protegida costera (314.562 hectáreas) que abarca manglares, bosques inundados y litorales rocosos. Santuario de ballenas jorobadas, tiburones, tortugas marinas y aves migratorias.</p>
+                    <div class="tips">
+                        <h4><i class="fas fa-lightbulb"></i> Actividades</h4>
+                        <p>Recorridos en lancha por esteros, observación de aves y delfines, buceo superficial en zonas coralinas. Se recomienda contratar guías locales de las comunidades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festivales Premium -->
+    <section id="festivales" class="festivals-section" style="background-color: #f8f9fa;">
+        <div class="section-title">
+            <h2>Festivales y Cultura</h2>
+            <p>Sumérgete en las tradiciones vivas de Pizarro</p>
+        </div>
+        
+        <div class="attractions-grid">
+            <!-- Festival de la Virgen del Carmen -->
+            <div class="attraction-card">
+                <img src="img/festival.jpg" alt="Festival de la Virgen del Carmen">
+                <div class="attraction-info">
+                    <h3>Festival de la Virgen del Carmen</h3>
+                    <div class="location">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Pizarro (7-16 de julio)</span>
+                    </div>
+                    <p class="description">La fiesta religiosa y cultural más importante de la región, en honor a la patrona de los pescadores. Una explosión de color, música y tradición que llena las calles de alegría y devoción.</p>
+                    <div class="tips">
+                        <h4><i class="fas fa-star"></i> Experiencia</h4>
+                        <p>Disfruta de procesiones, misas, presentaciones de marimba de chonta, tambores y el tradicional bunde. Prueba la gastronomía local y conoce el arte de los maestros artesanos.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pesca Artesanal -->
+            <div class="attraction-card">
+                <img src="img/pesca.jpg" alt="Pesca artesanal">
+                <div class="attraction-info">
+                    <h3>Pesca Artesanal</h3>
+                    <div class="location">
+                        <i class="fas fa-anchor"></i>
+                        <span>Comunidades costeras</span>
+                    </div>
+                    <p class="description">Vive la experiencia única de acompañar a los pescadores locales en sus faenas diarias. Conoce las técnicas ancestrales y la relación armónica con los recursos naturales.</p>
+                    <div class="tips">
+                        <h4><i class="fas fa-utensils"></i> Gastronomía</h4>
+                        <p>Degusta los frutos del mar en preparaciones tradicionales como el arroz con piangua, sancocho de pescado, arroz con coco y patacón con pescado frito.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Premium -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Sobre Pizarro</h3>
+                <p>Pizarro es un municipio del departamento del Chocó, Colombia, donde la selva tropical se encuentra con el océano Pacífico, creando un paraíso de biodiversidad y cultura ancestral.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <div class="footer-links">
+                    <a href="tel:+573001234567"><i class="fas fa-phone-alt"></i> +57 300 123 4567</a>
+                    <a href="mailto:turismo@pizarro-choco.gov.co"><i class="fas fa-envelope"></i> turismo@pizarro-choco.gov.co</a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Pizarro, Bajo Baudó, Chocó, Colombia</a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Enlaces Útiles</h3>
+                <div class="footer-links">
+                    <a href="https://programaacua.org" target="_blank"><i class="fas fa-external-link-alt"></i> Programa ACUA</a>
+                    <a href="https://www.choco.gov.co" target="_blank"><i class="fas fa-external-link-alt"></i> Gobernación del Chocó</a>
+                    <a href="https://fontur.com.co" target="_blank"><i class="fas fa-external-link-alt"></i> Fontur</a>
+                    <a href="#"><i class="fas fa-file-pdf"></i> Guía del Visitante</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 <a href="#">Pizarro, Bajo Baudó</a>. Todos los derechos reservados. | Diseñado con <i class="fas fa-heart" style="color: #ff6b6b;"></i> para el Chocó</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Hero Swiper
+        const heroSwiper = new Swiper(".mySwiper", {
+            effect: "fade",
+            fadeEffect: {
+                crossFade: true
+            },
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
